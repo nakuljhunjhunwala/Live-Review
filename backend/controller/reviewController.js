@@ -155,5 +155,5 @@ class reviewController {
 }
 
 module.exports = {
-  userController: reviewController
+  reviewController
 }

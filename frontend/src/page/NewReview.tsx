@@ -20,6 +20,10 @@ function NewReview() {
     }
   }, [navigator]);
 
+  const handleCancel = useCallback(() => {
+    navigator('/');
+  }, [navigator]);
+
   return (
     <div>
       <h1>New Review</h1>
@@ -29,6 +33,7 @@ function NewReview() {
         buttonText='Create'
         onSave={createNewReview}
       />
+    <button onClick={handleCancel} >Cancel</button>
     </div>
   );
 }

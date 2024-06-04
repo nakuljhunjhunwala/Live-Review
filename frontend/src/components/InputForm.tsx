@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import { useNavigate } from 'react-router-dom';
+
 interface InputFormProps {
     title: string;
     content: string;
@@ -16,6 +18,7 @@ const defaultInputFormProps: InputFormProps = {
 
 function InputForm(props: InputFormProps = defaultInputFormProps) {
     const { title, content, buttonText } = props;
+    const navigator = useNavigate();
 
     const [inputTitle, setInputTitle] = React.useState(title);
     const [inputContent, setInputContent] = React.useState(content);
@@ -31,6 +34,17 @@ function InputForm(props: InputFormProps = defaultInputFormProps) {
     const handleSave = (e: any) => {
         e.preventDefault();
         props.onSave(inputTitle, inputContent);
+    }
+
+    const handleReset = (e: any) => {
+        e.preventDefault();
+        setInputTitle('');
+        setInputContent('');
+    }
+
+    const handleCancel = (e: any) => {
+        e.preventDefault();
+        navigator('/');
     }
 
     useEffect(() => {
@@ -52,6 +66,8 @@ function InputForm(props: InputFormProps = defaultInputFormProps) {
             <textarea id="content" name="content" value={inputContent} onChange={handleContentChange} />
             <br />
         <button onClick={handleSave}>{buttonText}</button>
+        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleCancel} >Cancel</button>
     </form>
   )
 }

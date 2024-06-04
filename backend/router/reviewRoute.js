@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { userController } = require('../controller/reviewController');
-const review = new userController;
+const { reviewController } = require('../controller/reviewController');
+const review = new reviewController;
 
 router.get('/', (req, res) => {
   res.send({

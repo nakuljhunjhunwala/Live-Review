@@ -24,7 +24,7 @@ function Home() {
         throw new Error('Error fetching reviews');
       }
       const data = await response.json();
-      setReviews(data?.data || []);
+      setReviews(data?.data?.reverse() || []);
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -53,7 +53,7 @@ function Home() {
     setReviews((prevReviews) => {
       switch (data?.task) {
         case 'add':
-          return [...prevReviews, data?.data];
+          return [data?.data, ...prevReviews];
         case 'remove':
           return prevReviews.filter((review) => review._id !== data?.data._id);
         case 'update':
